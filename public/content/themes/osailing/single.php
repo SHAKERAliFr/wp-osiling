@@ -13,7 +13,14 @@ the_post();
   <main>
     <article class="post">
       <header class="post__header">
-        <img class="post__header__image" src="https://picsum.photos/1000/900?random=1">
+        <?php
+        if (has_post_thumbnail(get_the_id())) {
+          echo '<img class="post__header__image" src=" ' . get_the_post_thumbnail_url() . ' ">';
+        }
+
+        ?>
+
+        <!-- <img class="post__header__image" src="https://picsum.photos/1000/900?random=1"> -->
         <h1 class="post__header__title"><?= get_the_title(); ?></h1>
       </header>
       <main class="post__content">
