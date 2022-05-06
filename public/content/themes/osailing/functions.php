@@ -68,7 +68,7 @@ add_action('get_header', function () {
 });
 
 
-//! customizers numero 1 : changer l'image de la page d'accueil
+//! customizers numero 1 : 
 
 //todo STEP 0 : Enregistrement du hook pour activer notre customizer ( https://codex.wordpress.org/Theme_Customization_API )
 
@@ -126,5 +126,48 @@ function osailing_header_image_customizer($wpTheme)
     $wpTheme->add_control(
         // add_control attend une instance de "Control" (élément d'UX)
         $imageSelector
+    );
+}
+
+//!customize couleur fond 
+
+//! on commence par regerter
+add_action('customize_register', 'osailing_color_customizer');
+
+
+function osailing_color_customizer($wpThemeobject)
+{
+    //! etape 1 add_section
+    $wpThemeobject->add_section(
+        'custom-color', // identifiant de la section
+        [
+            'title' => 'Customization des couleurs',
+            'priority' => 1
+        ]
+    );
+
+    //! etape 2 add_setting
+    $wpThemeobject->add_setting(
+        // identifiant de la variable
+        'menu-color',
+        // tableau d'options pour notre variable
+        [
+            'default' => '#ff00ff',
+            // cette option permet de spécifier la technique qui sera utilisée pour gérer la preview dans le backOffice
+            'transport' => 'refresh'
+        ]
+    );
+    //! etap3 add_control
+    $wpThemeobject->add_control(
+        new WP_Customize_Color_Control(
+            $wpThemeobject, //l'objet represantant le theme
+            'menu-color-selector', //identifiant
+            [
+                'label' => 'menue couleur',
+                'section' => 'custom-color',
+                'settings' => 'menu-color'
+
+            ]
+        )
     );
 }
