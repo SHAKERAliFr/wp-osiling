@@ -5,7 +5,7 @@ get_header();
 <body class="home">
   <header class="header header--vertical">
     <div class="logo logo--vertical">
-      <img src="<?= get_theme_file_uri();?>/assets/images/logo.svg" class="logo__image" alt="">
+      <img src="<?= get_theme_file_uri(); ?>/assets/images/logo.svg" class="logo__image" alt="">
       <h1 class="logo__text">oSailing</h1>
     </div>
     <nav class="menu menu--vertical">
@@ -18,33 +18,33 @@ get_header();
   </header>
   <section class="banner" id="banner">
     <h2 class="banner__title">
-        <?php 
-            // DOC WP récupération inforation du site : https://developer.wordpress.org/reference/functions/get_bloginfo/
-            // affichage de la "tag line" du site. La tag est modifiable dans le backoffice (Settings -> general)
-            bloginfo('description');
-            /*
+      <?php
+      // DOC WP récupération inforation du site : https://developer.wordpress.org/reference/functions/get_bloginfo/
+      // affichage de la "tag line" du site. La tag est modifiable dans le backoffice (Settings -> general)
+      bloginfo('description');
+      /*
             Je peux aussi faire 
             echo get_bloginfo('description');
             */
-        ?>
-    
+      ?>
+
     </h2>
     <img src="<?= get_theme_mod('header-background-image') ?>" class="banner__image">
   </section>
   <main class="post-list post-list--home" id="post-list">
-  
+
     <?php
-        // DOC WP partial : https://developer.wordpress.org/reference/functions/get_template_part/
-        // IMPORTANT boucle Wordpress
-        //si il y a des posts
-        if(have_posts()){
-            // tant qu'il y a des posts
-            while(have_posts()){
-                // chargement du post dans la boucle
-                the_post();
-                echo get_template_part('partials/article-thumbnail', 'article-thumbnail');
-            }
-        }
+    // DOC WP partial : https://developer.wordpress.org/reference/functions/get_template_part/
+    // IMPORTANT boucle Wordpress
+    //si il y a des posts
+    if (have_posts()) {
+      // tant qu'il y a des posts
+      while (have_posts()) {
+        // chargement du post dans la boucle
+        the_post();
+        echo get_template_part('partials/article-thumbnail', 'article-thumbnail');
+      }
+    }
     ?>
 
     <a class="button" href="blog.html">Voir les articles plus anciens</a>
@@ -64,6 +64,6 @@ get_header();
     </div>
   </section>
 
-<?php
-get_footer();
-?>
+  <?php
+  get_footer();
+  ?>

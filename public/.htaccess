@@ -1,9 +1,16 @@
+
+# BEGIN WordPress
+# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-RewriteBase /PROMO/XandarWp/S01/wp-oSailing/public/
+RewriteBase /spewp/wp-oSailing/public/
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /PROMO/XandarWp/S01/wp-oSailing/public/index.php [L]
+RewriteRule . /spewp/wp-oSailing/public/index.php [L]
 </IfModule>
+
+# END WordPress

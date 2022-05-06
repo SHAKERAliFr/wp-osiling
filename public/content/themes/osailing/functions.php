@@ -13,13 +13,13 @@ function initializeTheme()
     add_theme_support('title-tag');
 }
 
-// IMPORTANT WP hook pour pour configurer notre theme
+// IMPORTANT WP hook pour configurer notre theme
 add_action(
     'after_setup_theme', // lorsque l'event 'after_setup_theme' sera déclanché
     'initializeTheme' // execution de la fonction osailing_initializeTheme()
 );
-// parallele avec Javascript
-// document.addEventListener('after_setup_theme', app.osailing_initializeTheme)
+//! parallele avec Javascript
+//! document.addEventListener('after_setup_theme', app.osailing_initializeTheme)
 
 // chargement des assets (css/js)
 function loadAssets()
@@ -39,6 +39,10 @@ function loadAssets()
 
 add_action('wp_enqueue_scripts', 'loadAssets');
 
+
+
+// ,**********************excerpt*************************
+
 // fonction qui permet de réduire la taille des résumés
 function excerptLenght($theExcerpt)
 {
@@ -53,15 +57,14 @@ add_action('get_the_excerpt', 'excerptLenght');
 // de façon random (une chance sur deux)
 // déclaration de la fonction DIRECTEMENT dans le add_action
 
-add_action('get_header', function(){
-    if(rand(0,1) ===1){
+add_action('get_header', function () {
+    if (rand(0, 1) === 1) {
         echo "<style>";
         echo "img {
             filter: sepia(90%)
             }";
         echo "</style>";
     }
-
 });
 
 
@@ -97,35 +100,31 @@ function osailing_header_image_customizer($wpTheme)
             // cette option permet de spécifier la technique qui sera utilisée pour gérer la preview dans le backOffice
             'transport' => 'refresh'
         ]
-        );
+    );
+    // die;
 
+    //todo STEP 4 : déclaration du composant d'UX qui sera utilisé pour donner une valeur a notre variable
 
-        //todo STEP 4 : déclaration du composant d'UX qui sera utilisé pour donner une valeur a notre variable
+    // on les appelera des "control" et un "control" est le terme utilisé en anglais pour parler d'un élément UX
+    $imageSelector = new WP_Customize_Image_Control(
+        // Le premier argument à passer est l'objet nous permettant de communiquer avec le customiser du thème wordpress
+        $wpTheme,
+        // identifiant du control
+        'header-background-image-control',
+        //options du control
+        [
+            'label' => 'Choose header image',
+            // dans quelle section nous pourrons aller modifier l'image du header
+            'section' => 'custom-image',
+            // on précise quelle "variable" sera modifiée par le composant
+            'settings' => 'header-background-image'
+        ]
+    );
 
-        // on les appelera des "control" et un "control" est le terme utilisé en anglais pour parler d'un élément UX
-        $imageSelector = new WP_Customize_Image_Control(
-            // Le premier argument à passer est l'objet nous permettant de communiquer avec le customiser du thème wordpress
-            $wpTheme,
-            // identifiant du control
-            'header-background-image-control',
-            //options du control
-            [
-                'label' => 'Choose header image',
-                // dans quelle section nous pourrons aller modifier l'image du header
-                'section' => 'custom-image',
-                // on précise quelle "variable" sera modifiée par le composant
-                'settings' => 'header-background-image'
-            ]
-        );
-    
     //todo STEP 5 : enregistrement du composant pour configurer notre variable
 
     $wpTheme->add_control(
         // add_control attend une instance de "Control" (élément d'UX)
-        $imageSelector 
+        $imageSelector
     );
-
-
-
-
 }
