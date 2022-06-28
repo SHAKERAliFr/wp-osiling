@@ -3,7 +3,6 @@
 ## Description
 
 oSailing est le blog d'un marin qui a pour projet de faire le tour du monde à la voile. Le client souhaite parler des ses semaines en mer, de ses escales et des différentes rencontres qu'il fera pendant son voyage.
-Le besoin du client est listé dans le [product backlog sur Trello](https://trello.com/invite/b/w3JomLKq/39d6d8b639415810779d5825f007bc29/osailing-xandar).
 
 ## Pages
 
